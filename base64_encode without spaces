@@ -1,0 +1,11 @@
+import base64
+def command_b64_enc(cmd):
+    command_bytes = cmd.encode('ascii')
+    base64_bytes = base64.b64encode(command_bytes)
+    base64_command = base64_bytes.decode('ascii')
+    if base64_command[-1] == "=" :
+        base64_command = command_b64_enc(cmd+" ")
+    return base64_command
+
+command="dir\n"
+print(command_b64_enc(command))
